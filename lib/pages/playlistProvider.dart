@@ -19,7 +19,7 @@ import 'song.dart';
 	   Song(
         suraName: "2_Al-Baqara",
         artistname: "Mishary Rashid Alafasy",
-        audioPath: "audio/2_Al-Baqara.mp3",
+        audioPath: "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/2_Al-Baqara.mp3?alt=media&token=e290c245-3901-4762-a4f3-d538b582d690",
        ),
 
 	   //Sura3
@@ -804,8 +804,8 @@ Song(
       final String path =_playlist[_current1index!].audioPath;
       await _audioPlayer.stop();//stop current sura
       ///errorrrrr
-      
-    await _audioPlayer.play(AssetSource(path));
+      await _audioPlayer.play(UrlSource(path));
+    //await _audioPlayer.play(AssetSource(path));
       _isPlaying =true;
      notifyListeners();
 
