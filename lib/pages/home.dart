@@ -66,9 +66,11 @@ City('Comilla', 23.4682, 91.1786),
 City('Narayanganj', 23.6238, 90.4965),
 City('Dinajpur', 25.6217, 88.6356),
 City('Jessore', 23.1697, 89.2137),
+City('Mymensingh', 24.7460, 90.4179),
+City('Netrokona', 24.8821, 90.7231),
+
+
 City('Riyadh', 24.7136, 46.6753),
-
-
 City('Tehran', 35.6895, 51.3890),
 
 City('Cairo', 30.0444, 31.2357),

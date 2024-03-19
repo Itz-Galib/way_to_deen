@@ -127,9 +127,6 @@ class _onBoardState extends State<onBoard> {
       width: MediaQuery.of(context).size.width*.9,
        child: TextButton( 
              onPressed: ()async{
-
-              
-
                var sharedPref = await SharedPreferences.getInstance();
                sharedPref.setBool( splashState.KeyPressed, true);
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HiddenDrawer()));
