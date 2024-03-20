@@ -1,4 +1,3 @@
-
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -16,17 +15,12 @@ import 'package:waytodeen2/onboarding_screens/intro7.dart';
 import 'package:waytodeen2/pages/hidden_drawer.dart';
 import 'package:waytodeen2/splash.dart';
 
-
-
-
 class onBoard extends StatefulWidget {
   const onBoard({Key? key}) : super(key: key);
 
   @override
   State<onBoard> createState() => _onBoardState();
 }
-
-
 
 class _onBoardState extends State<onBoard> {
   PageController _controller = PageController();
@@ -36,7 +30,8 @@ class _onBoardState extends State<onBoard> {
     _controller.dispose();
     super.dispose();
   }
-   bool onLastpage=false;
+
+  bool onLastpage = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,10 +40,10 @@ class _onBoardState extends State<onBoard> {
           //pages
           PageView(
             controller: _controller,
-            onPageChanged: (index){
-             setState(() {
-               onLastpage=(index==6);
-             });
+            onPageChanged: (index) {
+              setState(() {
+                onLastpage = (index == 6);
+              });
             },
             children: [
               intro1(),
@@ -62,33 +57,37 @@ class _onBoardState extends State<onBoard> {
           ),
 
           //dot indicator
-          onLastpage?getStarted():
-          Container(
-            alignment: Alignment(0, 0.75),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                //skip
-                
-                GestureDetector(
-                  child: Text('Skip', style: TextStyle(fontSize:18,fontWeight: FontWeight.bold)),
-                  onTap: () {
-                  _controller.jumpToPage(6);
-                  },
-                ),
-                SmoothPageIndicator(
-                  controller: _controller, count: 7,
-                  effect: SwapEffect(
-                    activeDotColor:Colors.black,
-                    dotColor: Colors.red,
-                    dotHeight: 15,
-                    dotWidth: 15 ),
-                  ),
+          onLastpage
+              ? getStarted()
+              : Container(
+                  alignment: Alignment(0, 0.75),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      //skip
 
-                //next
-                
-                onLastpage
-                ?/*GestureDetector(
+                      GestureDetector(
+                        child: Text('Skip',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        onTap: () {
+                          _controller.jumpToPage(6);
+                        },
+                      ),
+                      SmoothPageIndicator(
+                        controller: _controller,
+                        count: 7,
+                        effect: SwapEffect(
+                            activeDotColor: Colors.black,
+                            dotColor: Colors.red,
+                            dotHeight: 15,
+                            dotWidth: 15),
+                      ),
+
+                      //next
+
+                      onLastpage
+                          ? /*GestureDetector(
                   child: Text('LessGo',style: TextStyle(fontSize:18,fontWeight: FontWeight.bold)),
                   onTap: () {
                     Navigator.push(
@@ -97,52 +96,47 @@ class _onBoardState extends State<onBoard> {
                     }));
                     
                   },
-                )*/getStarted():
-                GestureDetector(
-                  child: Text('Next',style: TextStyle(fontSize:18, fontWeight: FontWeight.bold)),
-                  onTap: () {
-                    _controller.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
-                  },
+                )*/
+                          getStarted()
+                          : GestureDetector(
+                              child: Text('Next',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold)),
+                              onTap: () {
+                                _controller.nextPage(
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut);
+                              },
+                            ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
         ],
       ),
     );
-    
   }
-    Widget getStarted(){
-     return Container(
+
+  Widget getStarted() {
+    return Container(
       alignment: Alignment(0, 0.75),
-      child: Row(
-         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-       Container(
-        
-        decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        
-        color: Colors.green),
-      width: MediaQuery.of(context).size.width*.9,
-       child: TextButton( 
-             onPressed: ()async{
-               var sharedPref = await SharedPreferences.getInstance();
-               sharedPref.setBool( splashState.KeyPressed, true);
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HiddenDrawer()));
-              },
-       child:Text('Get Started',style: TextStyle(color: Colors.white
-       ),
-       )
-       )
-       )
-      ]
-      
-      ),
-
-      
-     );
-     }
-
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8), color: Colors.green),
+            width: MediaQuery.of(context).size.width * .9,
+            child: TextButton(
+                onPressed: () async {
+                  var sharedPref = await SharedPreferences.getInstance();
+                  sharedPref.setBool(splashState.KeyPressed, true);
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => HiddenDrawer()));
+                },
+                child: Text(
+                  'Get Started',
+                  style: TextStyle(color: Colors.white),
+                )))
+      ]),
+    );
+  }
 }
-
