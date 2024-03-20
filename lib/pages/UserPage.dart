@@ -22,31 +22,48 @@ class UserPage extends StatelessWidget {
         body: SafeArea(
           child: Padding(
 
-            padding: EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(.2),
             child: ListView.builder(
 
               itemCount: quran.getVerseCount(user.surahNumber),
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Column(
-                    children:[
-                      (index==0&&user.surahNumber!=1)
-                          ? Text(
-                          quran.basmala,
-                        style: TextStyle(fontSize: 25),
-                      ) : Text(''),
-                      SizedBox(height: 20,),
-                      Text(
-                        quran.getVerse(user.surahNumber, index + 1, verseEndSymbol: true),
-                        textAlign: TextAlign.right,
-                        style: TextStyle(fontSize: 25),
-                       ),
-                      Text(
-                      (index+1).toString()+'. '+quran.getVerseTranslation(user.surahNumber, index + 1, verseEndSymbol: false),
-                        textAlign: TextAlign.left,
-                        style: TextStyle(fontSize: 25),),
-                      SizedBox(height: 20,),
-                    ],
+                  title: Card(
+                    child: Column(
+                      children:[
+                       ElevatedButton(
+                               onPressed: () {},
+                               style: ElevatedButton.styleFrom(
+                             backgroundColor: Colors.transparent,
+                              foregroundColor: Colors.black,
+                              elevation: 0,
+                             ),
+                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                               children: const [
+                                
+                                Icon(Icons.bookmark),
+                              ],
+                                ),
+                    ),
+                        (index==0&&user.surahNumber!=1)
+                            ? Text(
+                            quran.basmala,
+                          style: TextStyle(fontSize: 25),
+                        ) : Text(''),
+                        SizedBox(height: 20,),
+                        Text(
+                          quran.getVerse(user.surahNumber, index + 1, verseEndSymbol: true),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 25),
+                         ),
+                        Text(
+                        (index+1).toString()+'. '+quran.getVerseTranslation(user.surahNumber, index + 1, verseEndSymbol: false),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 25),),
+                        SizedBox(height: 20,),
+                      ],
+                    ),
                   ),
 
                 );
