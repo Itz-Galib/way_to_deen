@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:waytodeen2/pages/playlistProvider.dart';
 import 'neu_box.dart';
-
+import 'Songs.dart';
 
 
 class SuraPage extends StatelessWidget {
@@ -21,11 +21,11 @@ class SuraPage extends StatelessWidget {
     return Consumer<PlaylistProvider>(
       builder: (context,value,child){
       //get playlist
-      final playlist =value.playlist;
+      //final playlist =value.playlist;
 
       //get current sura
 
-      final currentSong =playlist[value.currentSongIndex ?? 0];
+      final currentSong =Songs.playlist[value.currentSongIndex ?? 0];
 
 
         //returning sura player ui
@@ -43,19 +43,19 @@ class SuraPage extends StatelessWidget {
                //appbar
                Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-          
-            //backbutton
-          IconButton(onPressed :()=>Navigator.pop(context), 
-          icon:Icon(Icons.arrow_back ),
-          ),
-          //title
-          Text("P L A Y L I S T"),
-          //menubutton
-          IconButton(onPressed :()=>Navigator.pop(context), 
-          icon:Icon(Icons.menu),
-          ),
-          ],
+                children: [
+
+                  //backbutton
+                IconButton(onPressed :()=>Navigator.pop(context),
+                icon:Icon(Icons.arrow_back ),
+                ),
+                //title
+                Text("PLAYLIST",style: TextStyle(letterSpacing: 3),),
+                //menubutton
+                IconButton(onPressed :()=>Navigator.pop(context),
+                icon:Icon(Icons.menu),
+                ),
+                ],
           
          
                     
@@ -69,7 +69,7 @@ class SuraPage extends StatelessWidget {
                 child: Column(
                  // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                ClipRRect(
+                  ClipRRect(
                   borderRadius: BorderRadius.circular(8),      
                 ),
                 //sora name

@@ -96,14 +96,14 @@ _saveBookmark(int surahNumber, int verseNumber) async {
           Container(
             alignment: Alignment(0, 0.75),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            //  crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.green),
-                  width: MediaQuery.of(context).size.width * .12,
+                  width: MediaQuery.of(context).size.width * .14,
                   child: TextButton(
                     onPressed: () async {
                       SharedPreferences prefs = await SharedPreferences.getInstance();
