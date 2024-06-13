@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'square.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'UserPage.dart';
@@ -11,6 +10,7 @@ class User {
   final String totalVerse;
   final String placeOfRevelation;
   final String surahNameEnglish;
+
   const User({
     required this.surahName,
     required this.surahNumber,
@@ -27,96 +27,108 @@ class rquran extends StatefulWidget {
 
 class _rquranState extends State<rquran> {
   List<User> users = <User>[];
+  int? bookmarkedSurah;
+  int? bookmarkedVerse;
 
-  Widget build(BuildContext context) {
+  @override
+  void initState() {
+    super.initState();
+    _loadBookmark();
     for (int i = 1; i <= 114; i++) {
       User newUser = User(
-          surahName: quran.getSurahNameArabic(i),
-          surahNumber: i,
-          totalVerse: quran.getVerseCount(i).toString(),
-          placeOfRevelation: quran.getPlaceOfRevelation(i),
-          surahNameEnglish: quran.getSurahNameEnglish(i));
+        surahName: quran.getSurahNameArabic(i),
+        surahNumber: i,
+        totalVerse: quran.getVerseCount(i).toString(),
+        placeOfRevelation: quran.getPlaceOfRevelation(i),
+        surahNameEnglish: quran.getSurahNameEnglish(i),
+      );
       users.add(newUser);
     }
+  }
+
+  _loadBookmark() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      bookmarkedSurah = prefs.getInt('bookmarkedSurah');
+      bookmarkedVerse = prefs.getInt('bookmarkedVerse');
+    });
+  }
+_saveBookmark(int surahNumber, int verseNumber) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      bookmarkedSurah = surahNumber;
+      bookmarkedVerse = verseNumber;
+    });
+    await prefs.setInt('bookmarkedSurah', surahNumber);
+    await prefs.setInt('bookmarkedVerse', verseNumber);
+  }
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-      
-        
-        ListView.builder(
-        
-         // shrinkWrap: mounted,
-          padding: const EdgeInsets.all(8),
-          itemCount: users.length,
-          itemBuilder: (BuildContext context, int index) {
-            final user = users[index];
-        
-            return Card(
-              child: ListTile(
-                title: Text(user.surahNumber.toString() +
-                    '. ' +
-                    user.surahName +
-                    '  ||  ' +
-                    user.surahNameEnglish),
-                subtitle: Text('Total verses: ' +
-                    user.totalVerse +
-                    '  Place of Revelation :' +
-                    user.placeOfRevelation),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => UserPage(user: user),
-                  ));
-                },
-              ),
-            );
-          },
-        ),
-        
+      body: Stack(
+        children: [
+          ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: users.length,
+            itemBuilder: (BuildContext context, int index) {
+              final user = users[index];
 
-
-        /// new button
-         Container(
-       
-        alignment:  Alignment(0, 0.75),
-          child:
-              Row(
-                //mainAxisAlignment: MainAxisAlignment.end,
-                 crossAxisAlignment: CrossAxisAlignment.end,
-                 mainAxisAlignment: MainAxisAlignment.end,
-                
-                 children: [
-                  
-            Container(
-               //padding: const EdgeInsets.all(),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.green),
-                width: MediaQuery.of(context).size.width * .12,
-                child: TextButton(
-                  
+              return Card(
+                child: ListTile(
+                  title: Text(user.surahNumber.toString() +
+                      '. ' +
+                      user.surahName +
+                      '  ||  ' +
+                      user.surahNameEnglish),
+                  subtitle: Text('Total verses: ' +
+                      user.totalVerse +
+                      '  Place of Revelation :' +
+                      user.placeOfRevelation),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => UserPage(user: user),
+                    ));
+                  },
+                ),
+              );
+            },
+          ),
+          Container(
+            alignment: Alignment(0, 0.75),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.green),
+                  width: MediaQuery.of(context).size.width * .12,
+                  child: TextButton(
                     onPressed: () async {
-                      var sharedPref = await SharedPreferences.getInstance();
-                      //  sharedPref.setBool(splashState.KeyPressed, true);
-                      //  Navigator.pushReplacement(context,
-                      //       MaterialPageRoute(builder: (context) => HiddenDrawer()));
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      int? surahNumber = prefs.getInt('bookmarkedSurah');
+                      int? verseNumber = prefs.getInt('bookmarkedVerse');
+
+                      if (surahNumber != null && verseNumber != null) {
+                        final user = users.firstWhere((user) => user.surahNumber == surahNumber);
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => UserPage(user: user, initialVerse: verseNumber),
+                        ));
+                      }
                     },
                     child: Row(
                       children: [
-                       Icon(Icons.bookmark,color: Colors.amber),
-                      /* Text(
-                          'Last Read',
-                          style: TextStyle(color: Colors.white,fontSize: 10),
-                        ),
-                        */
+                        Icon(Icons.bookmark, color: bookmarkedSurah != null ? Colors.amber : Colors.grey),
                       ],
-                    )
-                    ))
-          ]),
-        ),
-        
-      ],
-    ) 
-
-        );
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
