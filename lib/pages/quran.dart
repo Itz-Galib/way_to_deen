@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'BackgroundContainer.dart';
 import 'UserPage.dart';
-import 'package:waytodeen2/themes/theme_provider.dart';
 
 class User {
   final String surahName;
@@ -26,6 +26,20 @@ class rquran extends StatefulWidget {
 }
 
 class _rquranState extends State<rquran> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: quranScrollable(),
+    );
+  }
+}
+
+class quranScrollable extends StatefulWidget {
+  @override
+  State<quranScrollable> createState() => quranScrollableState();
+}
+
+class quranScrollableState extends State<quranScrollable> {
   List<User> users = <User>[];
   int? bookmarkedSurah;
   int? bookmarkedVerse;
@@ -53,7 +67,8 @@ class _rquranState extends State<rquran> {
       bookmarkedVerse = prefs.getInt('bookmarkedVerse');
     });
   }
-_saveBookmark(int surahNumber, int verseNumber) async {
+
+  _saveBookmark(int surahNumber, int verseNumber) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       bookmarkedSurah = surahNumber;
@@ -62,72 +77,66 @@ _saveBookmark(int surahNumber, int verseNumber) async {
     await prefs.setInt('bookmarkedSurah', surahNumber);
     await prefs.setInt('bookmarkedVerse', verseNumber);
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: users.length,
-            itemBuilder: (BuildContext context, int index) {
-              final user = users[index];
+    return BackgroundContainer(
+       // Set the background color here
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: [
+            ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: users.length,
+              itemBuilder: (BuildContext context, int index) {
+                final user = users[index];
 
-              return Card(
-                child: ListTile(
-                  title: Text(user.surahNumber.toString() +
-                      '. ' +
-                      user.surahName +
-                      '  ||  ' +
-                      user.surahNameEnglish),
-                  subtitle: Text('Total verses: ' +
-                      user.totalVerse +
-                      '  Place of Revelation :' +
-                      user.placeOfRevelation),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => UserPage(user: user),
-                    ));
-                  },
-                ),
-              );
-            },
-          ),
-          Container(
-            alignment: Alignment(0, 0.75),
-            child: Row(
-            //  crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.green),
-                  width: MediaQuery.of(context).size.width * .14,
-                  child: TextButton(
-                    onPressed: () async {
-                      SharedPreferences prefs = await SharedPreferences.getInstance();
-                      int? surahNumber = prefs.getInt('bookmarkedSurah');
-                      int? verseNumber = prefs.getInt('bookmarkedVerse');
-
-                      if (surahNumber != null && verseNumber != null) {
-                        final user = users.firstWhere((user) => user.surahNumber == surahNumber);
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => UserPage(user: user, initialVerse: verseNumber),
-                        ));
-                      }
+                return Card(
+                  color: Colors.transparent,
+                  child: ListTile(
+                    title: Text('${user.surahNumber}. ${user.surahName} || ${user.surahNameEnglish}'),
+                    subtitle: Text('Total verses: ${user.totalVerse}  Place of Revelation: ${user.placeOfRevelation}'),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UserPage(user: user),
+                      ));
                     },
-                    child: Row(
-                      children: [
-                        Icon(Icons.bookmark, color: bookmarkedSurah != null ? Colors.amber : Colors.grey),
-                      ],
-                    ),
+                  ),
+                );
+              },
+            ),
+            Positioned(
+              bottom: 16.0,
+              right: 16.0,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.green,
+                ),
+                child: TextButton(
+                  onPressed: () async {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    int? surahNumber = prefs.getInt('bookmarkedSurah');
+                    int? verseNumber = prefs.getInt('bookmarkedVerse');
+
+                    if (surahNumber != null && verseNumber != null) {
+                      final user = users.firstWhere((user) => user.surahNumber == surahNumber);
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UserPage(user: user, initialVerse: verseNumber),
+                      ));
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.bookmark, color: bookmarkedSurah != null ? Colors.amber : Colors.grey),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

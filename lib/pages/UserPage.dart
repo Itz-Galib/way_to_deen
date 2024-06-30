@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'quran.dart';
+import 'BackgroundContainer.dart';
 
 class UserPage extends StatefulWidget {
   final User user;
@@ -28,9 +29,9 @@ class _UserPageState extends State<UserPage> {
     _loadBookmark();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
-        _scrollController.jumpTo(
-          _scrollController.position.maxScrollExtent * (widget.initialVerse / quran.getVerseCount(widget.user.surahNumber))
-        );
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent *
+            (widget.initialVerse /
+                quran.getVerseCount(widget.user.surahNumber)));
       }
     });
   }
@@ -57,7 +58,8 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.user.surahName + ' | ' + widget.user.surahNameEnglish),
+        title:
+            Text(widget.user.surahName + ' | ' + widget.user.surahNameEnglish),
       ),
       body: SafeArea(
         child: Padding(
@@ -84,9 +86,11 @@ class _UserPageState extends State<UserPage> {
                           children: [
                             Icon(
                               Icons.bookmark,
-                              color: (bookmarkedSurah == widget.user.surahNumber && bookmarkedVerse == index +1)
-                                  ? Colors.green
-                                  : Colors.grey,
+                              color:
+                                  (bookmarkedSurah == widget.user.surahNumber &&
+                                          bookmarkedVerse == index + 1)
+                                      ? Colors.green
+                                      : Colors.grey,
                             ),
                           ],
                         ),
@@ -99,14 +103,17 @@ class _UserPageState extends State<UserPage> {
                           : Text(''),
                       SizedBox(height: 20),
                       Text(
-                        quran.getVerse(widget.user.surahNumber, index + 1, verseEndSymbol: true),
+                        quran.getVerse(widget.user.surahNumber, index + 1,
+                            verseEndSymbol: true),
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 25),
                       ),
                       Text(
                         (index + 1).toString() +
                             '. ' +
-                            quran.getVerseTranslation(widget.user.surahNumber, index + 1, verseEndSymbol: false),
+                            quran.getVerseTranslation(
+                                widget.user.surahNumber, index + 1,
+                                verseEndSymbol: false),
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 25),
                       ),

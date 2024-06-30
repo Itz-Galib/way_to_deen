@@ -33,7 +33,7 @@ class __HiddenDrawerState extends State<HiddenDrawer> {
             selectedStyle: TextStyle(
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          home()),
+          Home()),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
           name: 'Read Quran',

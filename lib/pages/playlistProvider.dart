@@ -56,15 +56,22 @@ class PlaylistProvider extends ChangeNotifier {
         ? currentSong.audioPath1
         : currentSong.audioPath;
 
-    await _audioPlayer.stop();
-    if (currentSong.isDownloaded) {
-      await _audioPlayer.play(DeviceFileSource(path));
-    } else {
-      await _audioPlayer.play(UrlSource(path));
-    }
+    print('Playing song: ${currentSong.suraName}');
+    print('Path: $path');
+    print('Is Downloaded: ${currentSong.isDownloaded}');
 
-    _isPlaying = true;
-    notifyListeners();
+    await _audioPlayer.stop();
+    try {
+      if (currentSong.isDownloaded) {
+        await _audioPlayer.play(DeviceFileSource(path));
+      } else {
+        await _audioPlayer.play(UrlSource(path));
+      }
+      _isPlaying = true;
+      notifyListeners();
+    } catch (e) {
+      print('Error playing audio: $e');
+    }
   }
 
   Future<void> pause() async {
