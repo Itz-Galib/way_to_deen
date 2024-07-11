@@ -7,29 +7,18 @@ import 'package:waytodeen2/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:waytodeen2/themes/theme_provider.dart';
 
-
-
 void main() async {
-  
-    
-  runApp(
-    MultiProvider(
-      providers:[
-       ChangeNotifierProvider(create: (context)=>PlaylistProvider()),
-       ChangeNotifierProvider(create: (context)=>ThemeProvider())
-    
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => PlaylistProvider()),
+      ChangeNotifierProvider(create: (context) => ThemeProvider())
     ],
-    child : MyApp(),
-    )
-    );
+    child: MyApp(),
+  ));
 }
 
-
-
- 
 class MyApp extends StatefulWidget {
-   
-     const MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -56,27 +45,26 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        
-        home: FutureBuilder(
-          builder: (context, snapshot) {
-            if (hasPermission) {
-              return const splash();
-            } else {
-              return const Scaffold(
-                 backgroundColor: Color.fromARGB(255, 48, 48, 48),
-                 body:Text('Pleas allow the permission for accessing location ',style:TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
-              );
-            }
-
-          },
-         
-          future: getPermission(),
-          
-        ),
-        theme: Provider.of<ThemeProvider>(context).themedata,
-        
-        );
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      home: FutureBuilder(
+        builder: (context, snapshot) {
+          if (hasPermission) {
+            return const splash();
+          } else {
+            return const Scaffold(
+              backgroundColor: Colors.white,
+              body: Text(
+                'Pleas allow the permission for accessing location ',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            );
+          }
+        },
+        future: getPermission(),
+      ),
+      theme: Provider.of<ThemeProvider>(context).themedata,
+    );
   }
 }

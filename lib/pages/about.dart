@@ -19,7 +19,6 @@ class _about_pageState extends State<about_page> {
   }
 }
 
-
 class AboutScrollable extends StatefulWidget {
   @override
   State<AboutScrollable> createState() => AboutScrollableState();
@@ -41,7 +40,7 @@ class AboutScrollableState extends State<AboutScrollable> {
                   height: 55,
                   width: 500,
                   child: Text(
-                    'If you face any problem please feel free to Contact any of us',
+                    ' Contact any of us',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -66,17 +65,6 @@ class AboutScrollableState extends State<AboutScrollable> {
                             if (!await launchUrl(uri)) {
                               debugPrint('could not launch the Uri');
                             }
-                          },
-                        ),
-                        launchButton(
-                          title: 'Nur',
-                          icon: Icons.facebook,
-                          onPressed: () {
-                            launch(
-                              'https://www.facebook.com/profile.php?id=100082402681024&mibextid=ZbWKwL',
-                              forceWebView: true,
-                              forceSafariVC: false,
-                            );
                           },
                         ),
                       ],
@@ -106,17 +94,6 @@ class AboutScrollableState extends State<AboutScrollable> {
                             }
                           },
                         ),
-                        launchButton(
-                          title: 'Galib',
-                          icon: Icons.facebook,
-                          onPressed: () {
-                            launch(
-                              'https://www.facebook.com/omi.hasan.562114',
-                              forceWebView: true,
-                              forceSafariVC: false,
-                            );
-                          },
-                        ),
                       ],
                     ),
                   ),
@@ -142,17 +119,6 @@ class AboutScrollableState extends State<AboutScrollable> {
                             if (!await launchUrl(uri)) {
                               debugPrint('could not launch the Uri');
                             }
-                          },
-                        ),
-                        launchButton(
-                          title: 'Shihab',
-                          icon: Icons.facebook,
-                          onPressed: () {
-                            launch(
-                              'https://www.facebook.com/ali.faruk.10048?mibextid=ZbWKwL',
-                              forceWebView: true,
-                              forceSafariVC: false,
-                            );
                           },
                         ),
                       ],

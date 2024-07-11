@@ -81,7 +81,7 @@ class quranScrollableState extends State<quranScrollable> {
   @override
   Widget build(BuildContext context) {
     return BackgroundContainer(
-       // Set the background color here
+      // Set the background color here
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Stack(
@@ -94,14 +94,23 @@ class quranScrollableState extends State<quranScrollable> {
 
                 return Card(
                   color: Colors.transparent,
-                  child: ListTile(
-                    title: Text('${user.surahNumber}. ${user.surahName} || ${user.surahNameEnglish}'),
-                    subtitle: Text('Total verses: ${user.totalVerse}  Place of Revelation: ${user.placeOfRevelation}'),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => UserPage(user: user),
-                      ));
-                    },
+                  child: SizedBox(
+                    width: 250,
+                    height: 80,
+                    child: ListTile(
+                      title: Text(
+                        '${user.surahNumber}. ${user.surahName} || ${user.surahNameEnglish}',
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                          'Total verses: ${user.totalVerse}  Place of Revelation: ${user.placeOfRevelation}'),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => UserPage(user: user),
+                        ));
+                      },
+                    ),
                   ),
                 );
               },
@@ -116,20 +125,26 @@ class quranScrollableState extends State<quranScrollable> {
                 ),
                 child: TextButton(
                   onPressed: () async {
-                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
                     int? surahNumber = prefs.getInt('bookmarkedSurah');
                     int? verseNumber = prefs.getInt('bookmarkedVerse');
 
                     if (surahNumber != null && verseNumber != null) {
-                      final user = users.firstWhere((user) => user.surahNumber == surahNumber);
+                      final user = users.firstWhere(
+                          (user) => user.surahNumber == surahNumber);
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => UserPage(user: user, initialVerse: verseNumber),
+                        builder: (context) =>
+                            UserPage(user: user, initialVerse: verseNumber),
                       ));
                     }
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.bookmark, color: bookmarkedSurah != null ? Colors.amber : Colors.grey),
+                      Icon(Icons.bookmark,
+                          color: bookmarkedSurah != null
+                              ? Colors.amber
+                              : Colors.grey),
                     ],
                   ),
                 ),

@@ -62,7 +62,7 @@ class calendarScrollableState extends State<calendarScrollable> {
               ),
             ),
             Card(
-              color: Colors.transparent,
+              color: Colors.white.withOpacity(.75),
               child: Center(
                 // heightFactor: 1.9,
                 child: Padding(

@@ -17,90 +17,103 @@ class Songs {
     Song(
       suraName: "3_Aal-E-Imran",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/3_Aal-E-Imran.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/3_Aal-E-Imran.mp3?alt=media&token=e3586687-68f5-48ce-9b82-70f0f202da3f",
     ),
 
 //Sura4
     Song(
       suraName: "4_An-Nisa",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/4_An-Nisa.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/4_An-Nisa.mp3?alt=media&token=5442c413-5774-4a8c-b20f-c2dc24368d39",
     ),
 //Sura5
     Song(
       suraName: "5_Al-Maeda",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/5_Al-Maeda.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/5_Al-Maeda.mp3?alt=media&token=85a9d1f3-9c7b-4b42-b68b-c6c4eaa3659f",
     ),
 
 //Sura6
     Song(
       suraName: "6_Al-Anaam",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/6_Al-Anaam.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/6_Al-Anaam.mp3?alt=media&token=c1b3f689-4502-434d-9eec-a82fb4ee0e2c",
     ),
 
 //Sura7
     Song(
       suraName: "7_Al-Araf",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/7_Al-Araf.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/7_Al-Araf.mp3?alt=media&token=bec32514-fa6a-48fb-8466-0303f3f40c65",
     ),
 
 //Sura8
     Song(
       suraName: "8_Al-Anfal",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/8_Al-Anfal.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/8_Al-Anfal.mp3?alt=media&token=5e520d75-48a1-4089-ab41-7c28de6b79ff",
     ),
 
 //Sura9
     Song(
       suraName: "9_At-Tawba",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/9_At-Tawba.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/9_At-Tawba.mp3?alt=media&token=5518a87e-8b1e-4aa0-bbc5-6b7254aeea7f",
     ),
 
 //Sura10
     Song(
       suraName: "10_Surat-Yunus",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/10_Surat-Yunus.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/10_Surat-Yunus.mp3?alt=media&token=fac0e120-a0ea-4fb8-a627-053d54a98ae5",
     ),
 
 //Sura11
     Song(
       suraName: "11_Surat-Hud",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/11_Surat-Hud.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/11_Surat-Hud.mp3?alt=media&token=034f4ef1-541a-4ea3-80cc-6d19ce63d91c",
     ),
 
 //Sura12
     Song(
       suraName: "12_Surat-Yusuf",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/12_Surat-Yusuf.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/12_Surat-Yusuf.mp3?alt=media&token=fb781eb1-c6f1-4082-994e-9fba26572ac6",
     ),
 
 //Sura13
     Song(
       suraName: "13_Surat-Ar-Rad",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/13_Surat-Ar-Rad.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/13_Surat-Ar-Rad.mp3?alt=media&token=b7101a6d-4d33-475f-8d38-bf16a763fc4c",
     ),
 
 //Sura14
     Song(
       suraName: "14_Surat-Ibrahim",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/14_Surat-Ibrahim.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/14_Surat-Ibrahim.mp3?alt=media&token=4a76fce4-45fd-455d-ae7a-0d843c861d61",
     ),
 
 //Sura15
     Song(
       suraName: "15_Surat-Al-Hijr",
       artistname: "Mishary Rashid Alafasy",
-      audioPath: "audio/15_Surat-Al-Hijr.mp3",
+      audioPath:
+          "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/15_Surat-Al-Hijr.mp3?alt=media&token=d6bd76cf-d497-4804-884e-ea68aa492abe",
     ),
 
 //Sura16
@@ -793,6 +806,7 @@ class Songs {
     Song(
         suraName: "114_Surat-An-Nass",
         artistname: "Mishary Rashid Alafasy",
-        audioPath: "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/114_Surat-An-Nass.mp3?alt=media&token=50362a87-f647-47d3-8416-f4aede04dc5e"),
+        audioPath:
+            "https://firebasestorage.googleapis.com/v0/b/b1democlass.appspot.com/o/114_Surat-An-Nass.mp3?alt=media&token=50362a87-f647-47d3-8416-f4aede04dc5e"),
   ];
 }
