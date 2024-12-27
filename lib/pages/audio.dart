@@ -76,10 +76,6 @@ class audioScrollableState extends State<audioScrollable> {
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        subtitle: Text(
-                          sura.artistname,
-                          style: TextStyle(fontSize: 17),
-                        ),
                         onTap: () => goToSong(index),
                       ),
                     ),
